@@ -62,4 +62,51 @@ func main() {
 	fmt.Printf("Length: %v\n", len(a))   //size of slice
 	fmt.Printf("Capacity: %v\n", cap(a)) //size of underlying array
 
+	//taking a slice from a slice
+	//all of these point to the same underlying array
+	q := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	//q := [...]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10} //could also be an array
+	w := q[:]   //slice of all elements
+	e := q[3:]  //slice from 4th element to end
+	r := q[:6]  //slice from first 6 elements
+	t := q[3:6] //slice from the 4th, 5th, and 6th elements
+	q[5] = 42   //the 6th element will change for all slices
+	fmt.Println(q)
+	fmt.Println(w)
+	fmt.Println(e)
+	fmt.Println(r)
+	fmt.Println(t)
+
+	//declaring slice using make function
+	//the slice has an underlying array and they don't have to be equal
+	m := make([]int, 0, 3) //the last argument can be left out
+	fmt.Println()
+	fmt.Println(m)
+	fmt.Printf("Length: %v\n", len(m))
+	fmt.Printf("Capacity: %v\n", cap(m))
+
+	//adding an element to the slice
+	m = append(m, 1, 2, 3, 4, 5)
+	fmt.Println()
+	fmt.Println(m)
+	fmt.Printf("Length: %v\n", len(m))   //length increases
+	fmt.Printf("Capacity: %v\n", cap(m)) //capacity increases nonlinearly
+	//it is best to get it right in make
+
+	//concatinate slices
+	m = append(m, []int{6, 7, 8, 9, 10}...)
+	fmt.Println()
+	fmt.Println(m)
+	fmt.Printf("Length: %v\n", len(m))
+	fmt.Printf("Capacity: %v\n", cap(m))
+
+	//trimming slices
+	n := m[1:] //trim the start
+	fmt.Println()
+	fmt.Println(n)
+	l := m[:len(m)-1] //trim the end
+	fmt.Println(l)
+	o := append(m[:2], m[3:]...)
+	fmt.Println(o) //now 3 is gone, edits original array
+
 }
