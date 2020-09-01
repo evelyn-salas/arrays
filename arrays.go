@@ -5,6 +5,7 @@ import (
 )
 
 func main() {
+	//arrays//
 	//how to make an array
 	grades := [3]int{97, 85, 93} //you can indicate the type here
 	fmt.Printf("Grades: %v\n", grades)
@@ -51,5 +52,14 @@ func main() {
 	fmt.Println("this is version 2:")
 	fmt.Println(x)
 	fmt.Println(y)
+
+	//slices//
+	i := []int{1, 2, 3}
+	j := i //this DOES change underlying array
+	j[1] = 5
+	fmt.Println(i)
+	fmt.Println(j)
+	fmt.Printf("Length: %v\n", len(a))   //size of slice
+	fmt.Printf("Capacity: %v\n", cap(a)) //size of underlying array
 
 }
